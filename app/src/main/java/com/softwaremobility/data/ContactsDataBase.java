@@ -53,6 +53,11 @@ public class ContactsDataBase {
             sqLiteDatabase.setVersion(newVersion);
         }
     }
+    public SQLiteDatabase getInstanceDataBase(){
+        if (dataBase == null || !dataBase.isOpen()) this.open();
+        return dataBase;
+    }
+
 
     /**  -----------------------------------------------------------------------------------**/
 
