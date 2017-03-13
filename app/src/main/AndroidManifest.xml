@@ -16,7 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Contacts"/>
+        <activity android:name=".Contacts"
+            android:label="@string/contacts_title"/>
     </application>
 
 </manifest>

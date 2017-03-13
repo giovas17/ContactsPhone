@@ -52,7 +52,7 @@ public class ContactsProvider extends ContentProvider {
                 String termSearch = uri.getQueryParameter(ContactsContract.ContactsEntry.Key_SearchTerm);
                 String group = uri.getQueryParameter(ContactsContract.ContactsEntry.Key_Group);
 
-                if (group.length() > 0){
+                if (group != null && group.length() > 0){
                     selection = groupSelection;
                     selectionArgs = new String[]{group};
                 }

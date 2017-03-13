@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="height_item_contact">64dp</dimen>
+    <dimen name="no_data_text_size">18sp</dimen>
+    <dimen name="dialog_progress_widht">64dp</dimen>
+    <dimen name="dialog_progress_height">64dp</dimen>
+    <dimen name="padding_empty_recycler_view_contact_recipes">6dp</dimen>
+</resources>
