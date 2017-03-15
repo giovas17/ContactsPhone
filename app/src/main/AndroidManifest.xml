@@ -21,6 +21,8 @@
         </activity>
         <activity android:name=".Contacts"
             android:label="@string/contacts_title"/>
+        <activity android:name=".CreationContacts"
+            android:label="@string/new_contact"/>
         <provider
             android:authorities="com.softwaremobility.contacts.app"
             android:name="com.softwaremobility.data.ContactsProvider"

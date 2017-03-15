@@ -5,4 +5,14 @@
     <dimen name="dialog_progress_widht">64dp</dimen>
     <dimen name="dialog_progress_height">64dp</dimen>
     <dimen name="padding_empty_recycler_view_contact_recipes">6dp</dimen>
+    <dimen name="fab_compat_margin">6dp</dimen>
+    <dimen name="elevation">6dp</dimen>
+    <dimen name="max_elevation">10dp</dimen>
+    <dimen name="fab_padding">10dp</dimen>
+    <dimen name="normal_padding">16dp</dimen>
+    <dimen name="text_size_title_section">14dp</dimen>
+    <dimen name="margin_top_section_detail">20dp</dimen>
+    <dimen name="contacts_creation_buttons_container_width">260dp</dimen>
+    <dimen name="contacts_creation_buttons_container_text_size">12sp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
 </resources>

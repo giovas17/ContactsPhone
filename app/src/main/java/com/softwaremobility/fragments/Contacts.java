@@ -2,6 +2,7 @@ package com.softwaremobility.fragments;
 
 import android.Manifest;
 import android.content.ContentResolver;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
@@ -9,6 +10,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
@@ -17,7 +19,6 @@ import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +26,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.softwaremobility.adapters.ContactsAdapter;
-import com.softwaremobility.contactsphone.R;
+import com.softwaremobility.contactsphone.*;
 import com.softwaremobility.custom.EmptyRecyclerView;
 import com.softwaremobility.data.ContactsContract;
 import com.softwaremobility.data.ContactsDataBase;
@@ -103,6 +104,15 @@ public class Contacts extends Fragment implements LoaderManager.LoaderCallbacks<
 
         adapter = new ContactsAdapter(getContext());
         list.setAdapter(adapter);
+
+        FloatingActionButton fab = (FloatingActionButton)view.findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), com.softwaremobility.contactsphone.CreationContacts.class);
+                startActivity(intent);
+            }
+        });
 
         return view;
     }

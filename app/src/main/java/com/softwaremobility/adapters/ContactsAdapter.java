@@ -50,7 +50,7 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ViewHo
         if (cursor.getString(cursor.getColumnIndex(ContactsContract.ContactsEntry.Key_PhotoContact)) != null) {
             holder.imageContact.setImageBitmap(loadContactPhotoThumbnail(cursor.getString(cursor.getColumnIndex(ContactsContract.ContactsEntry.Key_PhotoContact))));
         }else {
-            holder.imageContact.setImageResource(R.mipmap.ic_launcher);
+            holder.imageContact.setImageResource(R.drawable.user_placeholder_icon);
         }
     }
 
