@@ -183,6 +183,7 @@ public class Contacts extends Fragment implements LoaderManager.LoaderCallbacks<
                     }
                     if (builder.length() > 0){
                         contact.setPhone(builder.toString());
+                        contact.setTypePhone((String.valueOf(android.provider.ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE)));
                     }
                     phoneCursor.close();
                     // Read every email id associated with the contact
