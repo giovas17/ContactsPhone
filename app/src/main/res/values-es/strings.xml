@@ -10,4 +10,5 @@
     <string name="photo_library">Photo library</string>
     <string name="label_add_image">Add Image</string>
     <string name="new_contact">New Contact</string>
+    <string name="search">Search</string>
 </resources>

@@ -58,10 +58,10 @@ public class ContactsProvider extends ContentProvider {
                 }
                 if (termSearch != null && termSearch.length() > 0){
                     if(selection == null){
-                        selection = ContactsContract.ContactsEntry.Key_Group + " LIKE ?";
+                        selection = ContactsContract.ContactsEntry.Key_Name + " LIKE ?";
                         selectionArgs = new String[]{"%" + termSearch + "%"};
                     }else {
-                        selection = selection + " AND " + ContactsContract.ContactsEntry.Key_Group + " LIKE ?";
+                        selection = selection + " AND " + ContactsContract.ContactsEntry.Key_Name + " LIKE ?";
                         assert selectionArgs != null;
                         String[] aux = new String[selectionArgs.length + 1];
                         System.arraycopy(selectionArgs, 0, aux, 0, selectionArgs.length);

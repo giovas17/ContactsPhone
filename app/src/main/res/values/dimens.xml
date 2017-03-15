@@ -15,4 +15,6 @@
     <dimen name="contacts_creation_buttons_container_width">260dp</dimen>
     <dimen name="contacts_creation_buttons_container_text_size">12sp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="margin_left_search_contacts">20dp</dimen>
+    <dimen name="min_height_edit_search">40dp</dimen>
 </resources>

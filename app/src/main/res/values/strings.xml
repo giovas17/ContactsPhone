@@ -20,4 +20,5 @@
     <string name="tag_photo">tag_photo</string>
     <string name="cropping_tag">cropping_tag</string>
     <string name="crop_path">crop_path</string>
+    <string name="search">Search</string>
 </resources>
