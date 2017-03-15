@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="@dimen/height_item_contact">
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/height_item_contact"
+    android:clickable="true"
+    android:foreground="@drawable/item_background">
 
     <ImageView
         android:id="@+id/imageContact"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
+        android:padding="10dp"
         android:contentDescription="@string/content_description_image"
-        android:scaleType="center"
+        android:scaleType="centerCrop"
         android:src="@mipmap/ic_launcher"
         android:adjustViewBounds="true"/>
 

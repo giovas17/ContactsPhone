@@ -13,6 +13,16 @@ public class Contact {
     private String email;
     private String typePhone;
 
+    public Contact() {
+        this.id = 0;
+        this.name = "";
+        this.photo_path = "";
+        this.group = "";
+        this.phone = "";
+        this.email = "";
+        this.typePhone = "";
+    }
+
     public Contact(int id, String name, String photo_path, String group, String phone, String email, String typePhone) {
         this.id = id;
         this.name = name;

@@ -34,7 +34,7 @@ public class ContactsContract {
         public static final String Key_Email = "email_address";
         public static final String Key_TypePhone = "type_phone";
         public static final String Key_PhotoContact = "photograph";
-        public static final String Key_Group = "group";
+        public static final String Key_Group = "group_contacts";
         public static final String Key_SearchTerm = "searchTerm";
 
         public static Uri buildContactsUri(long id) {

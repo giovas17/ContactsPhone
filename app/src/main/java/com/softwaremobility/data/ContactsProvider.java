@@ -75,9 +75,9 @@ public class ContactsProvider extends ContentProvider {
                         projection,
                         selection,
                         selectionArgs,
-                        sortOrder,
                         null,
-                        null
+                        null,
+                        sortOrder
                 );
             }default: {
                 return null;
