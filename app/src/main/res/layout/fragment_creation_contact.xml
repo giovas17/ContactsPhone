@@ -15,11 +15,12 @@
             android:layout_weight="1">
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/imageViewContact"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:contentDescription="@string/content_description_image"
-                app:srcCompat="@drawable/user_placeholder_icon" />
+                app:srcCompat="@drawable/user_placeholder_icon"
+                android:scaleType="centerCrop"/>
 
             <LinearLayout
                 android:layout_width="@dimen/contacts_creation_buttons_container_width"
