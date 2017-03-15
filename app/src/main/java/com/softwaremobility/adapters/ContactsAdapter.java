@@ -47,8 +47,11 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ViewHo
         cursor = getItem(position);
         holder.nameContact.setText(cursor.getString(cursor.getColumnIndex(ContactsContract.ContactsEntry.Key_Name)));
         holder.phoneContact.setText(cursor.getString(cursor.getColumnIndex(ContactsContract.ContactsEntry.Key_Phone)));
-        Glide.with(context).load(loadContactPhotoThumbnail(cursor.getString(cursor.getColumnIndex(ContactsContract.ContactsEntry.Key_PhotoContact))))
-                .into(holder.imageContact);
+        if (cursor.getString(cursor.getColumnIndex(ContactsContract.ContactsEntry.Key_PhotoContact)) != null) {
+            holder.imageContact.setImageBitmap(loadContactPhotoThumbnail(cursor.getString(cursor.getColumnIndex(ContactsContract.ContactsEntry.Key_PhotoContact))));
+        }else {
+            holder.imageContact.setImageResource(R.mipmap.ic_launcher);
+        }
     }
 
     @Override

@@ -1,9 +1,13 @@
 package com.softwaremobility.data;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
+import com.softwaremobility.models.Contact;
 
 /**
  * Created by darkgeat on 3/12/17.
@@ -11,10 +15,12 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class ContactsDataBase {
 
+    private static final String TAG = ContactsDataBase.class.getSimpleName();
+
     /** --------------------------------- DataBase name -------------------------------------**/
     private static final String DataBaseName = "ContactsDataBase";
     /** --------------------------------- Data Base Version ---------------------------------**/
-    private static final int version = 1;
+    private static final int version = 2;
     /** --------------------------------- Table Statements ----------------------------------**/
     private static final String TContacts = "CREATE TABLE " + ContactsContract.ContactsEntry.TABLE_NAME + " (" +
             ContactsContract.ContactsEntry.Key_IdContact + " INTEGER PRIMARY KEY NOT NULL, " +
@@ -103,6 +109,40 @@ public class ContactsDataBase {
     }
 
     /**
+     * This method inserts a new contact in the database
+     * @param contact Contact that will be added.
+     */
+    public void newEntryContacts(Contact contact){
+        open();
+        ContentValues values = new ContentValues();
+        values.put(ContactsContract.ContactsEntry.Key_IdContact, contact.getId());
+        values.put(ContactsContract.ContactsEntry.Key_Name, contact.getName());
+        if (contact.getEmail() != null && contact.getEmail().length() > 0) {
+            values.put(ContactsContract.ContactsEntry.Key_Email, contact.getEmail());
+        }
+        if (contact.getPhone() != null && contact.getPhone().length() > 0){
+            values.put(ContactsContract.ContactsEntry.Key_Phone,contact.getPhone());
+        }
+        if (contact.getPhoto_path() != null && contact.getPhoto_path().length() > 0){
+            values.put(ContactsContract.ContactsEntry.Key_PhotoContact,contact.getPhoto_path());
+        }
+        if (contact.getTypePhone() != null && contact.getTypePhone().length() > 0){
+            values.put(ContactsContract.ContactsEntry.Key_TypePhone,contact.getTypePhone());
+        }else {
+            values.put(ContactsContract.ContactsEntry.Key_TypePhone,"MOBILE");
+        }
+        if (contact.getGroup() != null && contact.getGroup().length() > 0){
+            values.put(ContactsContract.ContactsEntry.Key_Group,contact.getGroup());
+        }
+        dataBase.beginTransaction();
+        dataBase.insert(ContactsContract.ContactsEntry.TABLE_NAME,null,values);
+        Log.d(TAG,"Inserted contact: " + contact.getName());
+        dataBase.setTransactionSuccessful();
+        dataBase.endTransaction();
+        close();
+    }
+
+    /**
      * This method says if the table selected is empty
      * @param tableName String that represents the table that will be check.
      * @param primaryKey String that represents the primary field of the table selected.
@@ -124,7 +164,9 @@ public class ContactsDataBase {
                 return true;
             }
         }catch (Exception e){
-            close();
+            if (dataBase != null) {
+                close();
+            }
             return true;
         }
     }
