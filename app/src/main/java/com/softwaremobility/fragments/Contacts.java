@@ -278,7 +278,7 @@ public class Contacts extends Fragment implements LoaderManager.LoaderCallbacks<
                 }
             };
             GET_CONTACTS_TASK = request.getId();
-            TaskManager.addTask(request);
+            TaskManager.addTask(request, getContext());
         }else {
             getLoaderManager().initLoader(LOADER_ID, null, this);
         }

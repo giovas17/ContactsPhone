@@ -114,7 +114,7 @@ public class CreationContacts extends Fragment implements TaskListener {
 
                         }
                     };
-                    TaskManager.addTask(request);
+                    TaskManager.addTask(request, getContext());
                 }
             }
         });
