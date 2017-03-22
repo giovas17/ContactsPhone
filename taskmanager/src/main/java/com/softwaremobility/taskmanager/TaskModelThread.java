@@ -14,8 +14,7 @@ public class TaskModelThread extends AsyncTask<Void,Void,Boolean> {
     private TaskRequest request;
     private TaskManagerListener listener;
 
-    public TaskModelThread(TaskRequest request, TaskManagerListener listener){
-        this.request = request;
+    public TaskModelThread(TaskManagerListener listener){
         this.listener = listener;
     }
 
@@ -23,6 +22,10 @@ public class TaskModelThread extends AsyncTask<Void,Void,Boolean> {
     protected Boolean doInBackground(Void... voids) {
         request.functionality(request.getId());
         return true;
+    }
+
+    public void setRequest(TaskRequest request) {
+        this.request = request;
     }
 
     @Override
@@ -33,6 +36,10 @@ public class TaskModelThread extends AsyncTask<Void,Void,Boolean> {
                 if (request.getListener() != null){
                     request.getListener().OnFinishedTask(request.getId());
                 }
+            }
+        }else {
+            if (listener != null){
+                listener.OnErrorTask(request);
             }
         }
     }
