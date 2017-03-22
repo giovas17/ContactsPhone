@@ -8,4 +8,5 @@ import com.softwaremobility.models.TaskRequest;
 
 public interface TaskManagerListener {
     void OnFinishedTask(TaskRequest request);
+    void OnErrorTask(TaskRequest request);
 }

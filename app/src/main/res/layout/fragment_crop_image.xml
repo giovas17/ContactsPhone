@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        xmlns:custom="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/black">
+
+        <com.isseiaoki.simplecropview.CropImageView
+            android:id="@+id/cropImageView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="12"
+            android:padding="@dimen/normal_padding"
+            custom:scv_crop_mode="ratio_16_9"
+            custom:scv_background_color="@android:color/black">
+
+        </com.isseiaoki.simplecropview.CropImageView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/aspectRatio169"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:layout_margin="4dp"
+                android:text="@string/aspect_ratio_16_9"
+                android:textColor="@android:color/white"
+                android:gravity="center"
+                android:background="@drawable/button_black"
+                android:padding="6dp" />
+
+            <TextView
+                android:id="@+id/aspectRatio43"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:layout_margin="4dp"
+                android:text="@string/aspect_ratio_4_3"
+                android:textColor="@android:color/white"
+                android:gravity="center"
+                android:background="@drawable/button_black"
+                android:padding="6dp" />
+
+            <ImageView
+                android:id="@+id/rotateLeftCropImage"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="4dp"
+                android:contentDescription="@string/rotate_left_button_content_description"
+                android:src="@drawable/ic_rotate_left"
+                android:background="@drawable/button_black"
+                android:adjustViewBounds="true"
+                android:padding="6dp" />
+
+            <ImageView
+                android:id="@+id/rotateRightCropImage"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="4dp"
+                android:contentDescription="@string/rotate_right_button_content_description"
+                android:src="@drawable/ic_rotate_right"
+                android:background="@drawable/button_black"
+                android:adjustViewBounds="true"
+                android:padding="6dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/normal_padding"
+        app:elevation="6dp"
+        app:pressedTranslationZ="13dp"
+        android:src="@drawable/ic_done"/>
+
+</FrameLayout>

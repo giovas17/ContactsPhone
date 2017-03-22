@@ -14,7 +14,7 @@
         android:padding="10dp"
         android:contentDescription="@string/content_description_image"
         android:scaleType="centerCrop"
-        android:src="@mipmap/ic_launcher"
+        android:src="@drawable/user_placeholder_icon"
         android:adjustViewBounds="true"/>
 
     <LinearLayout

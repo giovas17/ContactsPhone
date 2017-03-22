@@ -3,4 +3,14 @@
     <string name="content_description_image">Imagen de contacto</string>
     <string name="contacts_title">Contactos</string>
     <string name="no_data">No data available</string>
+    <string name="personal_info">Personal information</string>
+    <string name="name">Name:</string>
+    <string name="phone">Phone</string>
+    <string name="camera">Camera</string>
+    <string name="photo_library">Photo library</string>
+    <string name="label_add_image">Add Image</string>
+    <string name="new_contact">New Contact</string>
+    <string name="search">Search</string>
+    <string name="error_email_empty">Email cannot be empty</string>
+    <string name="error_phone_empty">Phone cannot be empty</string>
 </resources>

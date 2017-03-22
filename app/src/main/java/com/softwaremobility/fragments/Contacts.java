@@ -2,6 +2,7 @@ package com.softwaremobility.fragments;
 
 import android.Manifest;
 import android.content.ContentResolver;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
@@ -9,6 +10,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
@@ -17,15 +19,21 @@ import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
-import android.util.Log;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.isseiaoki.simplecropview.util.Utils;
 import com.softwaremobility.adapters.ContactsAdapter;
-import com.softwaremobility.contactsphone.R;
+import com.softwaremobility.contactsphone.*;
 import com.softwaremobility.custom.EmptyRecyclerView;
 import com.softwaremobility.data.ContactsContract;
 import com.softwaremobility.data.ContactsDataBase;
@@ -33,6 +41,7 @@ import com.softwaremobility.listeners.TaskListener;
 import com.softwaremobility.models.Contact;
 import com.softwaremobility.models.TaskRequest;
 import com.softwaremobility.taskmanager.TaskManager;
+import com.softwaremobility.utilities.Utilities;
 
 import java.util.ArrayList;
 
@@ -48,6 +57,9 @@ public class Contacts extends Fragment implements LoaderManager.LoaderCallbacks<
     private SwipeRefreshLayout swipeRefreshLayout;
     private EmptyRecyclerView list;
     private ContactsAdapter adapter;
+    private EditText searchField;
+    private ImageView searchIcon;
+    private String search = "";
     private int GET_CONTACTS_TASK = 0;
     private String[] projection = new String[]{
             ContactsContract.ContactsEntry.Key_Name,
@@ -89,6 +101,9 @@ public class Contacts extends Fragment implements LoaderManager.LoaderCallbacks<
                 MakeAnUpdate();
             }
         });
+        searchField = (EditText)view.findViewById(R.id.editSearch);
+        searchIcon = (ImageView)view.findViewById(R.id.searchQuery);
+
 
         progress = (ProgressBar) view.findViewById(R.id.progressBarContacts);
         TextView emptyTextView = (TextView) view.findViewById(R.id.noData);
@@ -104,6 +119,53 @@ public class Contacts extends Fragment implements LoaderManager.LoaderCallbacks<
         adapter = new ContactsAdapter(getContext());
         list.setAdapter(adapter);
 
+        FloatingActionButton fab = (FloatingActionButton)view.findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), com.softwaremobility.contactsphone.CreationContacts.class);
+                startActivity(intent);
+            }
+        });
+
+        searchIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                search = searchField.getText().toString();
+                Utilities.hideKeyboard(getActivity());
+                getLoaderManager().restartLoader(LOADER_ID,null,Contacts.this);
+            }
+        });
+
+        searchField.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                search = charSequence.toString();
+                getLoaderManager().restartLoader(LOADER_ID,null,Contacts.this);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        searchField.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    Utilities.hideKeyboard(getActivity());
+                }
+                return false;
+            }
+        });
+
+
         return view;
     }
 
@@ -114,7 +176,7 @@ public class Contacts extends Fragment implements LoaderManager.LoaderCallbacks<
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         String sortOrder = ContactsContract.ContactsEntry.Key_Name + " ASC";
-        Uri uri = ContactsContract.ContactsEntry.buildContactsUriParams(null,null);
+        Uri uri = ContactsContract.ContactsEntry.buildContactsUriParams(null,search);
         return new CursorLoader(getContext(),uri,projection,null,null,sortOrder);
     }
 
@@ -183,6 +245,7 @@ public class Contacts extends Fragment implements LoaderManager.LoaderCallbacks<
                     }
                     if (builder.length() > 0){
                         contact.setPhone(builder.toString());
+                        contact.setTypePhone((String.valueOf(android.provider.ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE)));
                     }
                     phoneCursor.close();
                     // Read every email id associated with the contact
