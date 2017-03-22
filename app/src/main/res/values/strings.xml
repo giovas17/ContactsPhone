@@ -21,4 +21,7 @@
     <string name="cropping_tag">cropping_tag</string>
     <string name="crop_path">crop_path</string>
     <string name="search">Search</string>
+    <string name="error_email_empty">Email cannot be empty</string>
+    <string name="error_name_empty">Name cannot be empty</string>
+    <string name="error_phone_empty">Phone cannot be empty</string>
 </resources>

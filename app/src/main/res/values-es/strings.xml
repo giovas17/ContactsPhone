@@ -11,4 +11,6 @@
     <string name="label_add_image">Add Image</string>
     <string name="new_contact">New Contact</string>
     <string name="search">Search</string>
+    <string name="error_email_empty">Email cannot be empty</string>
+    <string name="error_phone_empty">Phone cannot be empty</string>
 </resources>

@@ -44,4 +44,9 @@ public class TaskManager implements TaskManagerListener {
             getInstance().getTaskRequestQueue().remove(request);
         }
     }
+
+    @Override
+    public void OnErrorTask(TaskRequest request) {
+
+    }
 }
